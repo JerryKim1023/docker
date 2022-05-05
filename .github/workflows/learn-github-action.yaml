@@ -1,0 +1,16 @@
+name: learn-github-action
+on:
+  push:
+    branches:
+      - main
+jobs:
+  python-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      # 깃헙의 특정위치로 가달라는 요청
+      - uses: actions/checkout@v2
+      # with 파이썬 버전을 써서 파이썬3.8버전을 설치해달라고 하는것
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - run: python -c "print('hello world')"
