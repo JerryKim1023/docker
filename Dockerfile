@@ -4,26 +4,13 @@ ADD requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-# multistage build
 FROM python:3.8-slim-buster
-
-COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
+COPY --from=builder /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
 
 ADD templates templates
 
 ADD app.py .
 
+ADD utils.py .
+
 CMD ["python", "app.py"]
-
-
-#FROM python:3.8-slim
-#
-#ADD requirements.txt .
-#
-#RUN pip install -r requirements.txt
-#
-#ADD templates templates
-#
-#ADD app.py .
-#
-#CMD ["python", "app.py"]
